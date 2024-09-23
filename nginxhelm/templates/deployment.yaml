@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          env:  # Here we define environment variables
+            - name: APP_NAMESPACE
+              value: {{ .Values.app_namespace }}  # Reference the value from the values file
