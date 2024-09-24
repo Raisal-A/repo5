@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}
-  namespace: {{ .Values.app_namespace }}  # Set the namespace dynamically
 spec:
   replicas: 1
   selector:
